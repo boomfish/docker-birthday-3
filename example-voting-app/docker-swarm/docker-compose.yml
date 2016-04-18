@@ -1,0 +1,57 @@
+version: "2"
+
+services:
+  voting-app:
+    image: boomfish/votingapp_voting-app
+    ports:
+      - "80"
+    networks:
+      - front-tier
+      - back-tier
+
+  result-app:
+    image: boomfish/votingapp_result-app
+    ports:
+      - "80"
+    networks:
+      - front-tier
+      - back-tier
+
+  worker:
+    image: manomarks/worker
+    networks:
+      - back-tier
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports: ["6379"]
+    networks:
+      - back-tier
+
+  db:
+    image: postgres:9.4
+    container_name: db
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - back-tier
+    environment:
+      - "constraint:com.example.db-store==true"
+
+volumes:
+  db-data:
+
+networks:
+  front-tier:
+    driver: overlay
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.100.0.0/16
+  back-tier:
+    driver: overlay
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.101.0.0/16
