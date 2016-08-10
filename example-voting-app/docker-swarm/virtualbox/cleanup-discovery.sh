@@ -1,3 +1,3 @@
 #!/bin/sh
 
-vagrant destroy consul
+vagrant destroy -f bday-kv

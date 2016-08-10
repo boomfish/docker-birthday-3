@@ -6,17 +6,17 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.define "consul" do |consul|
-      consul.vm.box = "ubuntu/trusty64"
-      consul.vm.hostname = "consul"
-      consul.vm.network :private_network, ip: "192.168.99.10"
+  config.vm.define "bday-kv" do |machine|
+      machine.vm.box = "ubuntu/trusty64"
+      machine.vm.hostname = "bday-kv"
+      machine.vm.network :private_network, ip: "192.168.99.10"
 
-      consul.vm.provider :virtualbox do |v|
+      machine.vm.provider :virtualbox do |v|
         v.customize [ "modifyvm", :id, "--cpus", "1" ]
         v.customize [ "modifyvm", :id, "--memory", "512" ]
       end
 
-      consul.vm.provision :docker do |d|
+      machine.vm.provision :docker do |d|
         d.run "consul",
           image: "gliderlabs/consul-server",
           cmd: "--bootstrap --advertise 192.169.99.10",

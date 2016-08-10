@@ -37,7 +37,7 @@ services:
     networks:
       - back-tier
     environment:
-      - "constraint:com.example.db-store==true"
+      - "constraint:bday.db-store==true"
 
 volumes:
   db-data:

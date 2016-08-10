@@ -1,3 +1,3 @@
 #!/bin/sh
 
-vagrant halt consul
+vagrant halt bday-kv

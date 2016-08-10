@@ -1,6 +1,8 @@
 #!/bin/sh
 
-docker-machine start bday-server
+set -e
+
+[ `docker-machine status bday-server` = "Running" ] || docker-machine start bday-server
 
 echo 'To connect to the Docker server run:'
 echo ''

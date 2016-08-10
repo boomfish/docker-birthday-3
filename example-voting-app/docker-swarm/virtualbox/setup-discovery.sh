@@ -1,3 +1,5 @@
 #!/bin/sh
 
-vagrant up --provider=virtualbox consul
+set -e
+
+vagrant up --provider=virtualbox bday-kv
