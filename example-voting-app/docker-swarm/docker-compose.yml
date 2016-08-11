@@ -47,6 +47,9 @@ services:
 
 volumes:
   db-data:
+    driver: rexray
+    driver_opts:
+      size: 1
 
 networks:
   front-tier:

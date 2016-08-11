@@ -1,0 +1,3 @@
+/example-voting-app/docker-swarm/virtualbox/interlock/certs
+/example-voting-app/docker-swarm/virtualbox/rexray
+*.pyc

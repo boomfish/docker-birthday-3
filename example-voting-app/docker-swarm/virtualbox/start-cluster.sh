@@ -8,6 +8,9 @@ set -e
 [ `docker-machine status bday-p1` = "Running" ] || docker-machine start bday-p1
 [ `docker-machine status bday-p2` = "Running" ] || docker-machine start bday-p2
 
+# Start rexray service for volume 
+docker-machine ssh bday-a1 sudo rexray service start || true
+
 eval $(docker-machine env --swarm bday-m1)
 
 # Configure interlock via consul for:
