@@ -8,6 +8,9 @@ services:
     networks:
       - front-tier
       - back-tier
+    labels:
+      - "interlock.hostname=voting"
+      - "interlock.domain=swarm"
 
   result-app:
     image: boomfish/votingapp_result-app
@@ -16,6 +19,9 @@ services:
     networks:
       - front-tier
       - back-tier
+    labels:
+      - "interlock.hostname=result"
+      - "interlock.domain=swarm"
 
   worker:
     image: manomarks/worker
